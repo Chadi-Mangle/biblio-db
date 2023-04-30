@@ -1,0 +1,26 @@
+import biblio
+from biblio import bibliotheque, commandes, livre
+
+def main(): 
+	b = bibliotheque.Bibliotheque()
+	commande=" "
+	while commande: 
+		commande = input("Entrez votre commande (M pour le Menu)").upper()
+		if commande == "M": 
+			commandes.affiche_menu()
+		if commande == "NG":
+			commandes.nouveau_genre(b)
+		if commande == "NL":
+			commandes.nouveau_livre(b)
+		if commande == "LL":
+			print(b)
+		if commande == "LG": 
+			commandes.affiche_genre(b)
+		if commande == "SG": 
+			commandes.supp_genre(b)
+		if commande == "SL":
+			commandes.supp_livre(b)
+		if commande == "Q": 
+			commandes.save(b)
+			break
+main()

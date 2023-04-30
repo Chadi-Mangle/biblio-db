@@ -1,0 +1,12 @@
+{
+    "genre": [
+        "oui"
+    ],
+    "livre": [
+        {
+            "annees": "oui",
+            "genre": "oui",
+            "titre": "oui"
+        }
+    ]
+}
