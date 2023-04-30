@@ -5,8 +5,9 @@ from pathlib import Path
 
 class Bibliotheque:
  	def __init__(self):
-        	self.livre = []
-			self.bdd = "{}/bib.json".format(Path.home())
+		self.livre = []
+		self.bdd = "{}/bib.json".format(Path.home())
+
 		try: 
 			f = open(bdd)
 			print("Chargement de la base de donnée '{}'...".format(bdd))
@@ -14,8 +15,8 @@ class Bibliotheque:
 			self.genre = list(i['Genre'])
 			for l in d['Livre']: 
 				self.livre.append(livre.Livre(l['titre'], l['annee'], l["genre"]))
-        except: 
-            		self.genre = []
+		except: 
+			self.genre = []
 			
 	def genre_existe(self, genre): 
 		if genre in self.genre: 
