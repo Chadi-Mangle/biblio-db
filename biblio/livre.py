@@ -15,3 +15,13 @@ class Livre:
 	
 	def dictionaire(self): 
 		return {'titre': self.titre, 'annees': self.annees, "genre": self.genre}
+
+	def __lt__(self, other): 
+		livre = [self.annees, self.genre, self.titre]
+		livre_other = [other.annees, other.genre, other.titre]
+
+		for i in range(0,2): 
+			if livre[i] != livre_other[i]:
+				return  livre[i] < livre_other[i]
+			
+			

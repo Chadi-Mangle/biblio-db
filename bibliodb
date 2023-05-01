@@ -5,7 +5,7 @@ def main():
 	b = bibliotheque.Bibliotheque()
 	commande=" "
 	while commande: 
-		commande = input("Entrez votre commande (M pour le Menu)").upper()
+		commande = input("Entrez votre commande (M pour le Menu) ").upper()
 		if commande == "M": 
 			commandes.affiche_menu()
 		if commande == "NG":
@@ -21,6 +21,8 @@ def main():
 		if commande == "SL":
 			commandes.supp_livre(b)
 		if commande == "Q": 
-			commandes.save(b)
+			choix = input("Voulez vous sauvgarder la base de donné ? ")
+			if choix.lower() in ["oui", "o", "y", "yes"]:
+				commandes.save(b)
 			break
 main()

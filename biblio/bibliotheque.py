@@ -4,17 +4,17 @@ from biblio import livre
 from pathlib import Path
 
 class Bibliotheque:
- 	def __init__(self):
+	def __init__(self):
 		self.livre = []
-		self.bdd = "{}/bib.json".format(Path.home())
+		self.bdd = "{}/biblio.json".format(Path.home())
 
 		try: 
-			f = open(bdd)
-			print("Chargement de la base de donnée '{}'...".format(bdd))
+			f = open(self.bdd)
+			print("Chargement de la base de donnée situé à '{}'...".format(self.bdd))
 			d = json.loads(f.read())
-			self.genre = list(i['Genre'])
+			self.genre = list(['Genre'])
 			for l in d['Livre']: 
-				self.livre.append(livre.Livre(l['titre'], l['annee'], l["genre"]))
+				self.livre.ajoute_livre(l['titre'], l['annee'], l["genre"])
 		except: 
 			self.genre = []
 			
@@ -22,38 +22,41 @@ class Bibliotheque:
 		if genre in self.genre: 
 			return True
 		return False
+	
 	def ajoute_genre(self, genre): 
 		if not self.genre_existe(genre):
 			self.genre.append(genre) 
 		else:
-			print("Le genre '{}' existe déjà !".format(genre))
+			raise ValueError
 	
 	def ajoute_livre(self, titre, annee, genre): 
-		if not self.genre_existe(genre): 
-			print("Le genre n'existe pas")
-			return
-		l = livre.Livre(titre, annee, genre)	
-		self.livre.append(l)
+		new_livre = livre.Livre(titre, annee, genre)
+		if len(self.livre) > 0:
+			for i in range(len(self.livre)): 
+				if new_livre < self.livre[i]:
+					self.livre.insert(i, new_livre)
+					return
+		self.livre.append(new_livre)
 	
 	def affiche_genre(self): 
-		p = "Tout les genres de livres dans la biblioothèque ({}) :".format(len(self.genre))
+		p =''
 		for i in range(len(self.genre)):
 			p += "\n{}. {}".format(i+1, self.genre[i]) 
 		return p
 
 	def supp_livre(self, livre):
-		try:
-			self.livre.remove(livre)
-			print("Le livre '{}' a bien été supprimé.".format(livre))
-		except ValueError:
-			print("Le livre n'est pas dans la bibliothèque.") 
+		for l in self.livre:
+			if l.titre == livre:
+				self.livre.remove(l)
+				return l
 
 	def supp_genre(self, genre):
-		try:
-			self.genre.remove(genre)
-			print("Le genre '{}' a bien été supprimé.".format(genre))
-		except ValueError:
-			print("Le genre n'est pas dans la bibliothèque.")
+		# try:
+		self.genre.remove(genre)
+		for l in self.livre: 
+			if l.genre == genre: 
+				l.genre = ""
+
 	def save(self):
 		biblio_dictionary = {"livre": [], "genre": self.genre}
 		for i in self.livre: 

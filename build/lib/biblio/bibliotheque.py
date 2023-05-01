@@ -4,15 +4,15 @@ from biblio import livre
 from pathlib import Path
 
 class Bibliotheque:
- 	def __init__(self):
+	def __init__(self):
 		self.livre = []
 		self.bdd = "{}/bib.json".format(Path.home())
 
 		try: 
-			f = open(bdd)
-			print("Chargement de la base de donnée '{}'...".format(bdd))
+			f = open(self.bdd)
+			print("Chargement de la base de donnée '{}'...".format(self.bdd))
 			d = json.loads(f.read())
-			self.genre = list(i['Genre'])
+			self.genre = list(['Genre'])
 			for l in d['Livre']: 
 				self.livre.append(livre.Livre(l['titre'], l['annee'], l["genre"]))
 		except: 
