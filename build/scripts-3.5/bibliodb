@@ -28,4 +28,7 @@ def main():
 			if choix.lower() in ["oui", "o", "y", "yes"]:
 				commandes.save(b)
 			break
+		else: 
+			print("La commande '{}' n'existe pas.\nUtilisé les commandes du menu: ".format(commande))
+			commandes.affiche_menu()
 main()
