@@ -1,7 +1,10 @@
 import biblio
 from biblio import bibliotheque, commandes, livre
 
+"""Fichier principale"""
+
 def main(): 
+	"""Fonction principale"""
 	b = bibliotheque.Bibliotheque()
 	commande=" "
 	while commande: 
