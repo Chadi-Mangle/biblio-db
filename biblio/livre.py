@@ -17,7 +17,7 @@ class Livre:
 		"""
 		if self.genre != "": 
 			return  str(self.annees) + " [" + self.genre +  "] " + self.titre
-		return self.annees + self.titre
+		return self.annees + " " + self.titre
 	
 	def dictionaire(self)->dict: 
 		"""Crée un dictionaire a partir d'un objet livre

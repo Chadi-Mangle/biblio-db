@@ -1,5 +1,5 @@
 import biblio
-from biblio import bibliotheque, commandes, livre
+from biblio import bibliotheque, commandes
 
 """Fichier principale"""
 
@@ -7,26 +7,24 @@ def main():
 	"""Fonction principale"""
 	b = bibliotheque.Bibliotheque()
 	commande=" "
-	while commande: 
+	while True: 
 		commande = input("Entrez votre commande (M pour le Menu) ").upper()
 		if commande == "M": 
 			commandes.affiche_menu()
-		if commande == "NG":
+		elif commande == "NG":
 			commandes.nouveau_genre(b)
-		if commande == "NL":
+		elif commande == "NL":
 			commandes.nouveau_livre(b)
-		if commande == "LL":
+		elif commande == "LL":
 			print(b)
-		if commande == "LG": 
+		elif commande == "LG": 
 			commandes.affiche_genre(b)
-		if commande == "SG": 
+		elif commande == "SG": 
 			commandes.supp_genre(b)
-		if commande == "SL":
+		elif commande == "SL":
 			commandes.supp_livre(b)
-		if commande == "Q": 
-			choix = input("Voulez vous sauvgarder la base de donné ? ")
-			if choix.lower() in ["oui", "o", "y", "yes"]:
-				commandes.save(b)
+		elif commande == "Q": 
+			commandes.quit_menu(b)
 			break
 		else: 
 			print("La commande '{}' est non valide.\nUtilisé les commandes du menu:\n".format(commande))

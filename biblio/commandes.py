@@ -86,3 +86,19 @@ def save(obj_biblio:object):
 	"""
 	obj_biblio.save() 
 	print("Tout a bien été sauvegardé")
+
+def quit_menu(obj_biblio:object): 
+	"""Quitte la bibliothèque et demmandes si on veut sauvegarder ou pas.
+	obj_bibli: objet de la classe Bibliotheque.
+	"""
+	while 1: 
+		choix = input("Voulez vous sauvgarder la base de donné ? ")
+		if choix.lower() in ["oui", "o", "y", "yes"]:
+			save(obj_biblio)
+			break
+
+		elif choix.lower() in ["n", "non", "no"]:
+			print("Vous allez quiter sans sauvegarder")
+			break
+		else:
+			print("Commande invalide.")
