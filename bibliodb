@@ -1,32 +1,30 @@
-import biblio
+"""Fichier principale"""
 from biblio import bibliotheque, commandes
 
-"""Fichier principale"""
-
-def main(): 
+def main():
 	"""Fonction principale"""
-	b = bibliotheque.Bibliotheque()
+	obj_biblio = bibliotheque.Bibliotheque()
 	commande=" "
-	while True: 
+	while True:
 		commande = input("Entrez votre commande (M pour le Menu) ").upper()
-		if commande == "M": 
+		if commande == "M":
 			commandes.affiche_menu()
 		elif commande == "NG":
-			commandes.nouveau_genre(b)
+			commandes.nouveau_genre(obj_biblio)
 		elif commande == "NL":
-			commandes.nouveau_livre(b)
+			commandes.nouveau_livre(obj_biblio)
 		elif commande == "LL":
-			print(b)
-		elif commande == "LG": 
-			commandes.affiche_genre(b)
-		elif commande == "SG": 
-			commandes.supp_genre(b)
+			print(obj_biblio)
+		elif commande == "LG":
+			commandes.affiche_genre(obj_biblio)
+		elif commande == "SG":
+			commandes.supp_genre(obj_biblio)
 		elif commande == "SL":
-			commandes.supp_livre(b)
-		elif commande == "Q": 
-			commandes.quit_menu(b)
+			commandes.supp_livre(obj_biblio)
+		elif commande == "Q":
+			commandes.quit_menu(obj_biblio)
 			break
-		else: 
+		else:
 			print("La commande '{}' est non valide.\nUtilisé les commandes du menu:\n".format(commande))
 			commandes.affiche_menu()
 main()
